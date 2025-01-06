@@ -1,4 +1,4 @@
-package dynamic.leetCode;
+package algorithm.dynamic.leetCode;
 
 /**
  * @author squirtle

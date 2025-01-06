@@ -1,4 +1,4 @@
-package Strings.leetCode;
+package algorithm.Strings.leetCode;
 
 /**
  * @author caihuaxin

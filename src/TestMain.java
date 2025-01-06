@@ -1,4 +1,4 @@
-import Strings.leetCode.IsValid;
+import algorithm.Strings.leetCode.IsValid;
 
 
 public class TestMain {
