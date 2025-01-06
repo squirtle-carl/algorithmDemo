@@ -15,16 +15,16 @@ import java.util.List;
  * @link ：https://www.wolai.com/xhMH321FUWEgQGUmXGxLdb
  */
 public class BubbleSort {
-    public static void main(String[] args) {
-        Integer[] numbers = SortUtil.generateArray(100, 500);
-//        Integer[] numbers = new Integer[] {13, 22, 23, 34, 15, 26, 47, 18, 29, 19, 11};
+    public static void main(String[] args) throws InterruptedException {
+        Integer[] numbers1 = SortUtil.generateArray(100, 500);
         long startTime = System.currentTimeMillis();
-        sort(numbers);
+        sort(numbers1);
         long endTime = System.currentTimeMillis();
         System.out.println(endTime - startTime);
-//        Integer[] newNumbers = new Integer[] {11, 13, 15, 18, 19, 22, 23, 26, 29, 34, 47};
+        Thread.sleep(1000);
+        Integer[] numbers2 = SortUtil.generateArray(100, 500);
         long startTime1 = System.currentTimeMillis();
-        SortUtil.bestBubbleSort(numbers);
+        SortUtil.bestBubbleSort(numbers2);
         long endTime1 = System.currentTimeMillis();
         System.out.println(endTime1 - startTime1);
         //数据量越大，优化效果越明显，但是并不能实质上优化，冒泡排序算法，只是阻断无效排序

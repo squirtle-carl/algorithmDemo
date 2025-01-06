@@ -201,9 +201,11 @@ public class SortUtil {
             if (arr[i] < arr[left]) {
                 SortUtil.swapArray(arr, i, index);
                 index++;
+                System.out.println(Arrays.toString(arr));
             }
         }
         SortUtil.swapArray(arr, left, index - 1);
+        System.out.println(Arrays.toString(arr));
         return index - 1;
     }
 
@@ -368,7 +370,7 @@ public class SortUtil {
          * 获取最高位数
          */
         int maxValue = SortUtil.getMaxValue(numbers);
-        int maxDigit= getNumLength(maxValue);
+        int maxDigit= getNumLength(maxValue);//获取最高位的位数
         radix(numbers, maxDigit);
     }
 

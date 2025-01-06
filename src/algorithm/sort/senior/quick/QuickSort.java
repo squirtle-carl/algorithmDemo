@@ -17,6 +17,7 @@ public class QuickSort {
     private static final int MAX_VALUE=30;
     public static void main(String[] args) throws Exception {
         Integer[] numbers = SortUtil.generateArray(LENGTH, MAX_VALUE);
+//        Integer[] numbers = {29,25,18,3,28,16,17,1,23,5};
         SortUtil.quickSort(numbers);
         System.out.println(Arrays.toString(numbers));
     }
