@@ -125,8 +125,7 @@ public class SortUtil {
                 int j=i-1;
                 for (; j >=0 &&numbers[j]>temp ; j--) {//遍历前面所有数--有序数列
                     numbers[j+1]=numbers[j];
-                    List<Integer> integers = Arrays.asList(numbers);
-                    System.out.println(integers);
+                    System.out.println(Arrays.toString(numbers));
                 }
                 numbers[j+1]=temp;//此时的j+1不等于i，因为进行了一次j--，j+1实际等于j
                 System.out.println("----------------------");

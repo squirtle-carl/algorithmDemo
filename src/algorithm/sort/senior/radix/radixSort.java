@@ -65,11 +65,10 @@ public class radixSort {
         }
     }
 
-    /*
-     * 基数排序
-     *
-     * 参数说明:
-     *     a -- 数组
+    /**
+     * @param a 数组
+     * @Description: 基数排序测试
+     * @see Integer[]
      */
     public static void radixSortTest(Integer[] a) {
         int exp;    // 指数。当对数组按各位进行排序时，exp=1；按十位进行排序时，exp=10；...
