@@ -1,4 +1,4 @@
-package algorithm.dynamic.leetCode;
+package algorithm.dynamic.leetCode.fibonacci;
 
 /**
  * @author squirtle
