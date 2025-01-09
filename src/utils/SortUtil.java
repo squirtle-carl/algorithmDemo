@@ -331,13 +331,13 @@ public class SortUtil {
         // 对 arr 进行拷贝，不改变参数内容
 //        Integer[] arr = Arrays.copyOf(numbers, numbers.length);
 
-        int maxValue = SortUtil.getMaxValue(numbers);
+        int maxValue = getMaxValue(numbers);
 
         counting(numbers, maxValue);
     }
 
     /**
-     * 计数操作
+     * 不稳定的计数操作
      * @param arr 随机数组
      * @param maxValue 最大值
      */
