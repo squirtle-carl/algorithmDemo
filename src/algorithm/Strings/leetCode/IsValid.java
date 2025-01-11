@@ -1,5 +1,7 @@
 package algorithm.Strings.leetCode;
 
+import java.util.Stack;
+
 /**
  * @author caihuaxin
  * @version 1.0.0
@@ -27,6 +29,32 @@ public class IsValid {
      * s 仅由括号 '()[]{}' 组成
      */
     public boolean isValid(String s) {
-        return false;
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') {
+                stack.push(s.charAt(i));//是左括号就push进栈
+            } else {
+                if (stack.isEmpty()) {//如果一个左括号都没有，肯定不是有效的括号
+                    return false;
+                }
+                char c = stack.pop();//如果当前字符不是左括号，那就要将栈顶元素弹出
+                if ((c == '(' && s.charAt(i) == ')') || (c == '[' && s.charAt(i) == ']') || (c == '{' && s.charAt(i) == '}')) {
+                    continue;//如果当前字符是左括号，并且栈顶元素是右括号，就继续下一个匹配
+                } else {
+                    return false;
+                }
+            }
+        }
+        //直到栈中元素清空，则说明全部匹配完成，否则非有效括号
+        if (stack.isEmpty()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        IsValid isValid = new IsValid();
+        System.out.println(isValid.isValid("([)]"));
     }
 }

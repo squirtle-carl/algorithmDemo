@@ -1,8 +1,6 @@
 package algorithm.Strings.leetCode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author caihuaxin
@@ -52,7 +50,26 @@ public class RomeCoverNum {
      *         题目保证输入的罗马数字总是有效的，且只包含以下的字符：（I， V， X， L，C，D 和 M）。
      *         题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。
      *         题目所给测试用例与答案符合的题目类型同样属于有效的答案。
-     *         I 、Ⅱ 、Ⅲ 、Ⅳ 、Ⅴ 、Ⅵ 、Ⅶ 、Ⅷ 、Ⅸ 、Ⅹ 、Ⅺ 、Ⅻ 、XIII、Ⅼ 、Ⅽ 、Ⅾ 、Ⅿ 都是有效的罗马数字，且表示整数
+     *         I 、Ⅱ 、Ⅲ 、Ⅳ 、Ⅴ 、Ⅵ 、Ⅶ 、Ⅷ 、Ⅸ 、Ⅹ 、Ⅺ 、Ⅻ 、XⅢ、Ⅼ 、Ⅽ 、Ⅾ 、Ⅿ 都是有效的罗马数字，且表示整数
+     */
+
+    //初始化罗马字符与数字的对应关系
+    private static Map<Character,Integer> map = new HashMap<>(){
+        {
+            put('I',1);
+            put('V',5);
+            put('X',10);
+            put('L',50);
+            put('C',100);
+            put('D',500);
+            put('M',1000);
+        }
+    };
+
+    /**
+     * @param s s
+     * @return @return int
+     * @doc 罗马转整型  第一种方式
      */
     public int romanToInt(String s) {//MCMXCIV
         List<Character> list = new ArrayList<>(Arrays.asList('I', 'V', 'X', 'L', 'C', 'D', 'M'));
@@ -72,37 +89,71 @@ public class RomeCoverNum {
         return sum;
     }
 
+    /**
+     * @param s s
+     * @return @return int
+     * @doc 罗马转整型  第二种方式
+     */
     public int romanToInt2(String s) {
+        //创建一个数组，存储对应的特殊罗马字符
         char[] str = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
 
+        //创建一个数组，存储罗马字符对应的数值
         int[] num = {1, 5, 10, 50, 100, 500, 1000};
         int sum = 0;
+        //倒序遍历字符串
         for (int i = (s.length()-1); i >= 0; i--) {
+            //正序遍历数组
             for (int j = 0; j < str.length; j++) {
-                //如果相等，则加上对应的数值
+                //如果字符串中的字符与数组中的字符相等，则做如下处理
                 if (s.charAt(i) == str[j]) {
+                    //如果当前字符是字符串的最后一个字符，则直接加上该数值
                     if(i==(s.length()-1)){
                         sum += num[j];
-                    }else{
+                    }else{//如果不是字符串的最后一个字符，则需要比对下一个字符
                         if(s.charAt(i+1) == 'V' && s.charAt(i) == 'I'){
-                            sum = sum - num[j];
+                            sum = sum - num[j];//如果Ⅴ在右边，Ⅰ在左边，则减去该字符对应的数值
                         }else if(s.charAt(i+1) == 'X' && s.charAt(i) == 'I'){
-                            sum = sum - num[j];
+                            sum = sum - num[j];//如果Ⅹ在右边，Ⅰ在左边，则减去该字符对应的数值
                         }else if(s.charAt(i+1) == 'L' && s.charAt(i) == 'X'){
-                            sum = sum - num[j];
+                            sum = sum - num[j];//同理
                         }else if(s.charAt(i+1) == 'C' && s.charAt(i) == 'X'){
-                            sum = sum - num[j];
+                            sum = sum - num[j];//同理
                         }else if(s.charAt(i+1) == 'D' && s.charAt(i) == 'C'){
-                            sum = sum - num[j];
+                            sum = sum - num[j];//同理
                         }else if(s.charAt(i+1) == 'M' && s.charAt(i) == 'C'){
-                            sum = sum - num[j];
+                            sum = sum - num[j];//同理
                         }else {
-                            sum += num[j];
+                            sum += num[j];//除了上述情况外，其他情况都应该加上该字符对应的数值
                         }
                     }
                 }
             }
         }
         return sum;
+    }
+
+
+    /**
+     * @param s s
+     * @return @return int
+     * @doc 罗马转整型  第三种方式
+     */
+    public static int romanToInt3(String s) {
+        int sum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            //如果不是最后一个罗马字符，并且该字符对应的数值小于下一个罗马字符对应的数值，则减去该字符对应的数值
+            if(i < s.length()-1 && map.get(s.charAt(i)) < map.get(s.charAt(i+1))){
+                sum -= map.get(s.charAt(i));
+            }else{//否则就加上
+                sum += map.get(s.charAt(i));
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        RomeCoverNum romeCoverNum = new RomeCoverNum();
+        System.out.println(romanToInt3("MCMXCIV"));
     }
 }
