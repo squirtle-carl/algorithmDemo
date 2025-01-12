@@ -16,7 +16,7 @@ public class IsPalindromeSolution {
         return s.contentEquals(new StringBuilder(s).reverse());
     }
     public static void main(String[] args) {
-        String s = "ab";
+        String s = "ab";//
         System.out.println(isPalindrome(s));
     }
 }
