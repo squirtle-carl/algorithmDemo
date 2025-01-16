@@ -92,7 +92,7 @@ public class ExcelColumnTitle {
         StringBuilder result = new StringBuilder();
         while (columnNumber>0){
             columnNumber--;
-            result.insert(0,(char)(columnNumber%26+'A'));
+            result.insert(0,(char)(columnNumber%26+'A'));//巧妙运用了ASCII码
             columnNumber/=26;
         }
         return result.toString();
