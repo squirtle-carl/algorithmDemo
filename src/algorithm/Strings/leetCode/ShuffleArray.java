@@ -1,5 +1,8 @@
 package algorithm.Strings.leetCode;
 
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  * @author squirtle
  * @version 1.0.0
@@ -30,5 +33,38 @@ public class ShuffleArray {
      * nums 中的所有元素都是 唯一的
      * 最多可以调用 104 次 reset 和 shuffle
      */
+
+    private int[] original;//初始数组
+
+    private int[] array;//打乱后数组
+
+    private Random random;//随机数生成器
+
+    public ShuffleArray(int[] nums) {
+        this.original = nums.clone();//克隆初始化数组
+        this.array = nums.clone();//克隆打乱后的数组
+        this.random = new Random();//初始化随机数生成器
+    }
+
+    public int[] reset(){
+        array = original.clone();
+        return array;
+    }
+
+    public int[] shuffle(){
+        for (int i = array.length - 1 ; i > 0 ; i--){
+            int j = random.nextInt(i+1);
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
+    public static void main(String[] args) {
+        ShuffleArray solution = new ShuffleArray(new int[]{1, 2, 3});
+        System.out.println(Arrays.toString(solution.shuffle())); // 打乱数组
+        System.out.println(Arrays.toString(solution.reset()));   // 重设数组
+        System.out.println(Arrays.toString(solution.shuffle())); // 再次打乱数组
+    }
 
 }
